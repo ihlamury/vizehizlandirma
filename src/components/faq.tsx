@@ -44,7 +44,7 @@ export function FAQ() {
   };
 
   return (
-    <section className="bg-white py-12 md:py-16">
+    <section id="sss" className="bg-white py-12 md:py-16">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-10">

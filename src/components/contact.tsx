@@ -42,7 +42,7 @@ export function Contact() {
   };
 
   return (
-    <section className="bg-secondary py-12 md:py-16">
+    <section id="iletisim" className="bg-secondary py-12 md:py-16">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-10">

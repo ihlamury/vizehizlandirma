@@ -1,3 +1,4 @@
+import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
 import { Problems } from "@/components/problems";
 import { Services } from "@/components/services";
@@ -7,13 +8,16 @@ import { Contact } from "@/components/contact";
 
 export default function Home() {
   return (
-    <main>
-      <Hero />
-      <Problems />
-      <Services />
-      <HowItWorks />
-      <FAQ />
-      <Contact />
-    </main>
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <Problems />
+        <Services />
+        <HowItWorks />
+        <FAQ />
+        <Contact />
+      </main>
+    </>
   );
 }
