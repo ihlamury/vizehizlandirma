@@ -8,7 +8,7 @@ const faqs = [
   {
     question: "Güvenilir misiniz? Bilgilerim güvende mi?",
     answer:
-      "Evet, tamamen güvenilir bir hizmet sunuyoruz. Tüm kişisel bilgileriniz şifreli olarak saklanır ve sadece vize işlemleriniz için kullanılır. İşlem tamamlandıktan sonra belgeleriniz sistemimizden silinir. Yasal bir danışmanlık firması olarak fatura kesiyoruz.",
+      "Evet, tamamen güvenilir bir hizmet sunuyoruz. Tüm kişisel bilgileriniz şifreli olarak saklanır ve sadece vize işlemleriniz için kullanılır. İşlem tamamlandıktan sonra belgeleriniz sistemimizden silinir.",
   },
   {
     question: "Randevu ne kadar sürede bulunur?",
