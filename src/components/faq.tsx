@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, Plus, Minus } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
+import { FadeIn } from "@/components/fade-in";
 
 const faqs = [
   {
@@ -44,68 +45,72 @@ export function FAQ() {
   };
 
   return (
-    <section id="sss" className="bg-white py-12 md:py-16">
+    <section id="sss" className="bg-white py-16 md:py-20">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-3">
-            Sıkça Sorulan Sorular
-          </h2>
-          <p className="text-slate-600 max-w-2xl mx-auto">
-            Merak ettiğiniz soruların cevapları
-          </p>
-        </div>
+        <FadeIn>
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-3">
+              Sıkça Sorulan Sorular
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Merak ettiğiniz soruların cevapları
+            </p>
+          </div>
+        </FadeIn>
 
         {/* FAQ Items */}
-        <div className="max-w-2xl mx-auto space-y-4">
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
-            return (
-              <div
-                key={index}
-                className={`rounded-lg overflow-hidden transition-all ${
-                  isOpen 
-                    ? "bg-primary text-white shadow-lg" 
-                    : "bg-secondary hover:bg-secondary/80 border-2 border-transparent hover:border-primary/20"
-                }`}
-              >
-                <button
-                  onClick={() => toggleFAQ(index)}
-                  className="w-full flex items-center justify-between p-5 text-left"
-                  aria-expanded={isOpen}
-                  aria-controls={`faq-answer-${index}`}
+        <FadeIn>
+          <div className="max-w-2xl mx-auto space-y-3">
+            {faqs.map((faq, index) => {
+              const isOpen = openIndex === index;
+              return (
+                <div
+                  key={index}
+                  className={`rounded-lg overflow-hidden transition-all ${
+                    isOpen 
+                      ? "bg-primary text-white shadow-lg" 
+                      : "bg-secondary hover:bg-secondary/80 border-2 border-transparent hover:border-primary/20"
+                  }`}
                 >
-                  <span className={`font-semibold pr-4 ${isOpen ? "text-white" : "text-primary"}`}>
-                    {faq.question}
-                  </span>
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                      isOpen 
-                        ? "bg-white/20" 
-                        : "bg-primary text-white"
-                    }`}
+                  <button
+                    onClick={() => toggleFAQ(index)}
+                    className="w-full flex items-center justify-between p-5 text-left"
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${index}`}
                   >
-                    {isOpen ? (
-                      <Minus className="w-5 h-5" />
-                    ) : (
-                      <Plus className="w-5 h-5" />
-                    )}
-                  </div>
-                </button>
-                {isOpen && (
-                  <div 
-                    id={`faq-answer-${index}`}
-                    className="px-5 pb-5"
-                  >
-                    <p className="text-white/90 leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
+                    <span className={`font-semibold pr-4 ${isOpen ? "text-white" : "text-primary"}`}>
+                      {faq.question}
+                    </span>
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
+                        isOpen 
+                          ? "bg-white/20" 
+                          : "bg-primary text-white"
+                      }`}
+                    >
+                      {isOpen ? (
+                        <Minus className="w-5 h-5" />
+                      ) : (
+                        <Plus className="w-5 h-5" />
+                      )}
+                    </div>
+                  </button>
+                  {isOpen && (
+                    <div 
+                      id={`faq-answer-${index}`}
+                      className="px-5 pb-5"
+                    >
+                      <p className="text-white/90 leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

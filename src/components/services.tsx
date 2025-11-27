@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check, FileText, UserPlus, Zap } from "lucide-react";
+import { FadeIn } from "@/components/fade-in";
 
 type ServiceId = "ds160" | "account" | "expedition";
 
@@ -104,76 +105,79 @@ export function Services() {
   const { total, discount, originalTotal } = calculatePrice(selectedServices);
 
   return (
-    <section id="hizmetler" className="bg-white py-12 md:py-16 relative">
+    <section id="hizmetler" className="bg-white py-16 md:py-20 relative">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-3">
-            Hizmetlerimiz ve Fiyatlar
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-sm">
-            İhtiyacınıza göre hizmet seçin. Çoklu seçimde otomatik indirim!
-          </p>
-        </div>
+        <FadeIn>
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-3">
+              Hizmetlerimiz ve Fiyatlar
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              İhtiyacınıza göre hizmet seçin. Çoklu seçimde otomatik indirim!
+            </p>
+          </div>
+        </FadeIn>
 
         <div className="max-w-4xl mx-auto">
           {/* Service Cards Row */}
-          <div className="grid md:grid-cols-3 gap-4 mb-6">
-            {services.map((service) => {
+          <div className="grid md:grid-cols-3 gap-5 mb-6">
+            {services.map((service, index) => {
               const isSelected = selectedServices.includes(service.id);
               return (
-                <Card
-                  key={service.id}
-                  className={`relative p-4 cursor-pointer transition-all duration-200 ${
-                    isSelected
-                      ? "border-2 border-accent ring-2 ring-accent/20 bg-accent/5"
-                      : "border border-border hover:border-accent/50 hover:shadow-md"
-                  }`}
-                  onClick={() => toggleService(service.id)}
-                >
-                  {/* Selection Indicator */}
-                  <div
-                    className={`absolute top-3 right-3 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
+                <FadeIn key={service.id} delay={index * 100}>
+                  <Card
+                    className={`relative p-5 cursor-pointer transition-all duration-200 h-full ${
                       isSelected
-                        ? "bg-accent border-accent scale-110"
-                        : "border-muted-foreground/30"
+                        ? "border-2 border-accent ring-2 ring-accent/20 bg-accent/5"
+                        : "border border-border hover:border-accent/50 hover:shadow-md"
                     }`}
+                    onClick={() => toggleService(service.id)}
                   >
-                    {isSelected && <Check className="w-4 h-4 text-white" />}
-                  </div>
+                    {/* Selection Indicator */}
+                    <div
+                      className={`absolute top-4 right-4 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
+                        isSelected
+                          ? "bg-accent border-accent scale-110"
+                          : "border-muted-foreground/30"
+                      }`}
+                    >
+                      {isSelected && <Check className="w-4 h-4 text-white" />}
+                    </div>
 
-                  {/* Icon */}
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 transition-colors ${
-                    isSelected ? "bg-accent/20" : "bg-secondary"
-                  }`}>
-                    <service.icon className={`w-5 h-5 ${isSelected ? "text-accent" : "text-primary"}`} />
-                  </div>
+                    {/* Icon */}
+                    <div className={`w-11 h-11 rounded-lg flex items-center justify-center mb-4 transition-colors ${
+                      isSelected ? "bg-accent/20" : "bg-secondary"
+                    }`}>
+                      <service.icon className={`w-5 h-5 ${isSelected ? "text-accent" : "text-primary"}`} />
+                    </div>
 
-                  {/* Title */}
-                  <h3 className="text-base font-semibold text-primary mb-1 pr-6">
-                    {service.title}
-                  </h3>
+                    {/* Title */}
+                    <h3 className="text-base font-semibold text-primary mb-2 pr-6">
+                      {service.title}
+                    </h3>
 
-                  {/* Price */}
-                  <p className="text-2xl font-bold text-primary mb-3">
-                    ₺{service.price.toLocaleString("tr-TR")}
-                  </p>
+                    {/* Price */}
+                    <p className="text-2xl font-bold text-primary mb-4">
+                      ₺{service.price.toLocaleString("tr-TR")}
+                    </p>
 
-                  {/* Features */}
-                  <ul className="space-y-1.5">
-                    {service.features.map((feature, index) => (
-                      <li key={index} className="flex items-center gap-2 text-sm">
-                        <Check className="w-4 h-4 text-green-600 flex-shrink-0" />
-                        <span className="text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </Card>
+                    {/* Features */}
+                    <ul className="space-y-2">
+                      {service.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center gap-2 text-sm">
+                          <Check className="w-4 h-4 text-green-600 flex-shrink-0" />
+                          <span className="text-muted-foreground">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </Card>
+                </FadeIn>
               );
             })}
           </div>
 
-          {/* Summary Bar - Clean white design */}
+          {/* Summary Bar */}
           <div className="sticky bottom-4 z-40">
             <Card className="p-4 bg-white border border-border shadow-lg">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
