@@ -5,6 +5,7 @@ import { Services } from "@/components/services";
 import { HowItWorks } from "@/components/how-it-works";
 import { FAQ } from "@/components/faq";
 import { Contact } from "@/components/contact";
+import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <FAQ />
         <Contact />
       </main>
+      <Footer />
     </>
   );
 }
