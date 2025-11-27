@@ -75,6 +75,35 @@ export function Services() {
     );
   };
 
+  const scrollToContact = () => {
+    // Build selected services text
+    const selectedTitles = selectedServices
+      .map((id) => services.find((s) => s.id === id)?.title)
+      .filter(Boolean)
+      .join(", ");
+    
+    const { total } = calculatePrice(selectedServices);
+
+    // Store selection in sessionStorage for the contact form to read
+    sessionStorage.setItem("selectedServices", selectedTitles);
+    sessionStorage.setItem("selectedTotal", total.toLocaleString("tr-TR"));
+
+    // Dispatch custom event to notify contact form
+    window.dispatchEvent(new Event("servicesSelected"));
+
+    const element = document.getElementById("iletisim");
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   const { total, discount, originalTotal } = calculatePrice(selectedServices);
 
   return (
@@ -87,9 +116,6 @@ export function Services() {
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm">
             İhtiyacınıza göre hizmet seçin. Çoklu seçimde otomatik indirim!
-          </p>
-          <p className="text-sm text-accent font-medium mt-2">
-            💡 2 hizmet = ₺5.000 | 3 hizmet = ₺6.000
           </p>
         </div>
 
@@ -197,6 +223,7 @@ export function Services() {
                   </div>
                 )}
                 <Button
+                  onClick={scrollToContact}
                   className="bg-accent hover:bg-accent/90 text-white font-semibold px-6"
                   disabled={selectedServices.length === 0}
                 >

@@ -1,7 +1,23 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Shield, Clock, FileCheck } from "lucide-react";
 
 export function Hero() {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
     <section className="bg-primary text-white">
       <div className="container mx-auto px-4 py-20 md:py-28">
@@ -28,12 +44,14 @@ export function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button
               size="lg"
+              onClick={() => scrollToSection("iletisim")}
               className="bg-white text-primary hover:bg-blue-50 font-semibold px-8"
             >
               Hemen Başlayın
             </Button>
             <Button
               size="lg"
+              onClick={() => scrollToSection("hizmetler")}
               className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-semibold px-8"
             >
               Fiyatları İncele

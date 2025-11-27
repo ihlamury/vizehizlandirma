@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,6 +10,25 @@ import { Mail, Send, CheckCircle, AlertCircle } from "lucide-react";
 export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [selectedServices, setSelectedServices] = useState<string>("");
+  const [selectedTotal, setSelectedTotal] = useState<string>("");
+
+  // Listen for service selection from Services component
+  useEffect(() => {
+    const handleServicesSelected = () => {
+      const services = sessionStorage.getItem("selectedServices") || "";
+      const total = sessionStorage.getItem("selectedTotal") || "";
+      setSelectedServices(services);
+      setSelectedTotal(total);
+    };
+
+    // Check on mount in case user refreshes
+    handleServicesSelected();
+
+    // Listen for updates
+    window.addEventListener("servicesSelected", handleServicesSelected);
+    return () => window.removeEventListener("servicesSelected", handleServicesSelected);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,6 +50,10 @@ export function Contact() {
       if (response.ok) {
         setSubmitStatus("success");
         form.reset();
+        setSelectedServices("");
+        setSelectedTotal("");
+        sessionStorage.removeItem("selectedServices");
+        sessionStorage.removeItem("selectedTotal");
       } else {
         setSubmitStatus("error");
       }
@@ -129,6 +152,21 @@ export function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Selected Services Banner */}
+                {selectedServices && (
+                  <div className="bg-accent/10 border border-accent/20 rounded-lg p-3 mb-2">
+                    <p className="text-sm font-medium text-primary">
+                      Seçilen Hizmetler: <span className="text-accent">{selectedServices}</span>
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Toplam: ₺{selectedTotal}
+                    </p>
+                    {/* Hidden field to include in form submission */}
+                    <input type="hidden" name="selected_services" value={selectedServices} />
+                    <input type="hidden" name="selected_total" value={`₺${selectedTotal}`} />
+                  </div>
+                )}
+
                 {/* Name */}
                 <div>
                   <Label htmlFor="name" className="text-primary font-medium">
@@ -176,14 +214,13 @@ export function Contact() {
                 {/* Message */}
                 <div>
                   <Label htmlFor="message" className="text-primary font-medium">
-                    Mesajınız *
+                    Mesajınız
                   </Label>
                   <Textarea
                     id="message"
                     name="message"
-                    required
-                    rows={4}
-                    placeholder="Hangi hizmetlerle ilgileniyorsunuz? Sorularınız neler?"
+                    rows={3}
+                    placeholder="Eklemek istediğiniz notlar..."
                     className="mt-1.5 border-2 border-slate-200 focus:border-accent resize-none"
                   />
                 </div>
