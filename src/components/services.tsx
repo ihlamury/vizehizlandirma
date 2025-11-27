@@ -62,6 +62,14 @@ function calculatePrice(selectedServices: ServiceId[]): { total: number; discoun
   if (count === 3) {
     return { total: 6000, discount: originalTotal - 6000, originalTotal };
   } else if (count === 2) {
+    const hasDs160 = selectedServices.includes("ds160");
+    const hasAccount = selectedServices.includes("account");
+    
+    // DS-160 + Account Creation = ₺4,500
+    if (hasDs160 && hasAccount) {
+      return { total: 4500, discount: originalTotal - 4500, originalTotal };
+    }
+    // Any other 2 combo (DS-160 + Expedition OR Account + Expedition) = ₺5,000
     return { total: 5000, discount: originalTotal - 5000, originalTotal };
   }
   return { total: originalTotal, discount: 0, originalTotal };

@@ -47,7 +47,7 @@ export function Hero() {
               onClick={() => scrollToSection("iletisim")}
               className="bg-amber-400 hover:bg-amber-500 text-primary font-bold px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all"
             >
-              Hemen Başlayın
+              Hemen Başla
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
             <Button
