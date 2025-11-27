@@ -1,0 +1,7 @@
+# Robots.txt for vizehizlandirma.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://vizehizlandirma.com/sitemap.xml
