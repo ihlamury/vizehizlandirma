@@ -76,7 +76,6 @@ export function Services() {
   };
 
   const scrollToContact = () => {
-    // Build selected services text
     const selectedTitles = selectedServices
       .map((id) => services.find((s) => s.id === id)?.title)
       .filter(Boolean)
@@ -84,11 +83,9 @@ export function Services() {
     
     const { total } = calculatePrice(selectedServices);
 
-    // Store selection in sessionStorage for the contact form to read
     sessionStorage.setItem("selectedServices", selectedTitles);
     sessionStorage.setItem("selectedTotal", total.toLocaleString("tr-TR"));
 
-    // Dispatch custom event to notify contact form
     window.dispatchEvent(new Event("servicesSelected"));
 
     const element = document.getElementById("iletisim");
@@ -107,7 +104,7 @@ export function Services() {
   const { total, discount, originalTotal } = calculatePrice(selectedServices);
 
   return (
-    <section id="hizmetler" className="bg-white py-12 md:py-16">
+    <section id="hizmetler" className="bg-white py-12 md:py-16 relative">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-8">
@@ -127,27 +124,29 @@ export function Services() {
               return (
                 <Card
                   key={service.id}
-                  className={`relative p-4 cursor-pointer transition-all ${
+                  className={`relative p-4 cursor-pointer transition-all duration-200 ${
                     isSelected
-                      ? "border-2 border-accent ring-2 ring-accent/20"
-                      : "border border-border hover:border-accent/50"
+                      ? "border-2 border-accent ring-2 ring-accent/20 bg-accent/5"
+                      : "border border-border hover:border-accent/50 hover:shadow-md"
                   }`}
                   onClick={() => toggleService(service.id)}
                 >
                   {/* Selection Indicator */}
                   <div
-                    className={`absolute top-3 right-3 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
+                    className={`absolute top-3 right-3 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
                       isSelected
-                        ? "bg-accent border-accent"
+                        ? "bg-accent border-accent scale-110"
                         : "border-muted-foreground/30"
                     }`}
                   >
-                    {isSelected && <Check className="w-3 h-3 text-white" />}
+                    {isSelected && <Check className="w-4 h-4 text-white" />}
                   </div>
 
                   {/* Icon */}
-                  <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center mb-3">
-                    <service.icon className="w-5 h-5 text-primary" />
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 transition-colors ${
+                    isSelected ? "bg-accent/20" : "bg-secondary"
+                  }`}>
+                    <service.icon className={`w-5 h-5 ${isSelected ? "text-accent" : "text-primary"}`} />
                   </div>
 
                   {/* Title */}
@@ -174,64 +173,66 @@ export function Services() {
             })}
           </div>
 
-          {/* Summary Bar */}
-          <Card className="p-4 bg-secondary border-0">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              {/* Left: Selection Info */}
-              <div className="flex-1">
-                {selectedServices.length === 0 ? (
-                  <p className="text-muted-foreground text-sm">
-                    👆 Yukarıdan hizmet seçin
-                  </p>
-                ) : (
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-sm text-muted-foreground">Seçilen:</span>
-                    {selectedServices.map((id) => {
-                      const service = services.find((s) => s.id === id);
-                      return (
-                        <span
-                          key={id}
-                          className="inline-flex items-center bg-white px-2 py-1 rounded text-xs font-medium text-primary"
-                        >
-                          {service?.title}
-                        </span>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-
-              {/* Right: Price & CTA */}
-              <div className="flex items-center gap-4">
-                {selectedServices.length > 0 && (
-                  <div className="text-right">
-                    {discount > 0 && (
-                      <div className="text-xs text-green-600 font-medium">
-                        ₺{discount.toLocaleString("tr-TR")} tasarruf!
-                      </div>
-                    )}
-                    <div className="flex items-center gap-2">
-                      {discount > 0 && (
-                        <span className="text-sm text-muted-foreground line-through">
-                          ₺{originalTotal.toLocaleString("tr-TR")}
-                        </span>
-                      )}
-                      <span className="text-2xl font-bold text-primary">
-                        ₺{total.toLocaleString("tr-TR")}
-                      </span>
+          {/* Summary Bar - Clean white design */}
+          <div className="sticky bottom-4 z-40">
+            <Card className="p-4 bg-white border border-border shadow-lg">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                {/* Left: Selection Info */}
+                <div className="flex-1">
+                  {selectedServices.length === 0 ? (
+                    <p className="text-muted-foreground text-sm">
+                      👆 Yukarıdan hizmet seçin
+                    </p>
+                  ) : (
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-sm text-muted-foreground">Seçilen:</span>
+                      {selectedServices.map((id) => {
+                        const service = services.find((s) => s.id === id);
+                        return (
+                          <span
+                            key={id}
+                            className="inline-flex items-center bg-accent/10 text-accent px-2.5 py-1 rounded-full text-xs font-medium"
+                          >
+                            {service?.title}
+                          </span>
+                        );
+                      })}
                     </div>
-                  </div>
-                )}
-                <Button
-                  onClick={scrollToContact}
-                  className="bg-accent hover:bg-accent/90 text-white font-semibold px-6"
-                  disabled={selectedServices.length === 0}
-                >
-                  Hemen Başvur
-                </Button>
+                  )}
+                </div>
+
+                {/* Right: Price & CTA */}
+                <div className="flex items-center gap-4">
+                  {selectedServices.length > 0 && (
+                    <div className="text-right">
+                      {discount > 0 && (
+                        <div className="text-xs text-green-600 font-medium">
+                          ₺{discount.toLocaleString("tr-TR")} tasarruf!
+                        </div>
+                      )}
+                      <div className="flex items-center gap-2">
+                        {discount > 0 && (
+                          <span className="text-sm text-muted-foreground line-through">
+                            ₺{originalTotal.toLocaleString("tr-TR")}
+                          </span>
+                        )}
+                        <span className="text-2xl font-bold text-primary">
+                          ₺{total.toLocaleString("tr-TR")}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                  <Button
+                    onClick={scrollToContact}
+                    className="bg-accent hover:bg-accent/90 text-white font-semibold px-6"
+                    disabled={selectedServices.length === 0}
+                  >
+                    Hemen Başvur
+                  </Button>
+                </div>
               </div>
-            </div>
-          </Card>
+            </Card>
+          </div>
         </div>
       </div>
     </section>

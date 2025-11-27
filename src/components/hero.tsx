@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Shield, Clock, FileCheck } from "lucide-react";
+import { Shield, Clock, FileCheck, ArrowRight } from "lucide-react";
 
 export function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -40,19 +40,20 @@ export function Hero() {
             hizmetleriyle vize sürecinizi kolaylaştırıyoruz.
           </p>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - Improved hierarchy */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button
               size="lg"
               onClick={() => scrollToSection("iletisim")}
-              className="bg-white text-primary hover:bg-blue-50 font-semibold px-8"
+              className="bg-amber-400 hover:bg-amber-500 text-primary font-bold px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all"
             >
               Hemen Başlayın
+              <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
             <Button
               size="lg"
               onClick={() => scrollToSection("hizmetler")}
-              className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-semibold px-8"
+              className="bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-6 text-lg border border-white/30"
             >
               Fiyatları İncele
             </Button>

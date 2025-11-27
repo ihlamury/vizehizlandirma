@@ -1,27 +1,27 @@
 import { FileWarning, UserX, CalendarClock } from "lucide-react";
 
-export function Problems() {
-  const problems = [
-    {
-      icon: FileWarning,
-      title: "DS-160 Formu Karmaşık",
-      description:
-        "Onlarca sayfa, İngilizce sorular ve teknik terimler. Küçük bir hata başvurunuzun reddine yol açabilir.",
-    },
-    {
-      icon: UserX,
-      title: "Hesap Oluşturma Güçlüğü",
-      description:
-        "USVisaScheduling sisteminde hesap açmak ve ödeme yapmak kafa karıştırıcı bir süreç.",
-    },
-    {
-      icon: CalendarClock,
-      title: "Randevular Çok Uzak",
-      description:
-        "Mevcut randevu tarihleri 12-18 ay sonrasına veriliyor. Seyahat planlarınız aksıyor.",
-    },
-  ];
+const problems = [
+  {
+    icon: FileWarning,
+    title: "DS-160 Formu Karmaşık",
+    description:
+      "Onlarca sayfa, İngilizce sorular ve teknik terimler. Küçük bir hata başvurunuzun reddine yol açabilir.",
+  },
+  {
+    icon: UserX,
+    title: "Hesap Oluşturma Güçlüğü",
+    description:
+      "USVisaScheduling sisteminde hesap açmak ve ödeme yapmak kafa karıştırıcı bir süreç.",
+  },
+  {
+    icon: CalendarClock,
+    title: "Randevular Çok Uzak",
+    description:
+      "Mevcut randevu tarihleri 12-18 ay sonrasına veriliyor. Seyahat planlarınız aksıyor.",
+  },
+];
 
+export function Problems() {
   return (
     <section className="bg-secondary py-16 md:py-24">
       <div className="container mx-auto px-4">
@@ -43,8 +43,8 @@ export function Problems() {
               key={index}
               className="bg-white rounded-xl p-6 shadow-sm border border-border hover:shadow-md transition-shadow"
             >
-              <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-                <problem.icon className="w-6 h-6 text-red-600" />
+              <div className="w-12 h-12 bg-amber-50 rounded-lg flex items-center justify-center mb-4">
+                <problem.icon className="w-6 h-6 text-amber-600" />
               </div>
               <h3 className="text-xl font-semibold text-primary mb-2">
                 {problem.title}

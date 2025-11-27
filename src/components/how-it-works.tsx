@@ -43,19 +43,17 @@ export function HowItWorks() {
 
         {/* Steps */}
         <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-4 gap-6 relative">
+            {/* Connector Line - Desktop Only */}
+            <div className="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-0.5 bg-primary/20" />
+            
             {steps.map((step, index) => (
               <div key={index} className="relative text-center">
-                {/* Connector Line - hidden on mobile, shown on desktop */}
-                {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-[60%] w-[80%] h-[2px] bg-border" />
-                )}
-
                 {/* Icon Circle */}
-                <div className="relative inline-flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-sm border border-border mb-4">
+                <div className="relative inline-flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-md border-2 border-primary/20 mb-4 z-10">
                   <step.icon className="w-7 h-7 text-accent" />
                   {/* Step Number */}
-                  <div className="absolute -top-1 -right-1 w-6 h-6 bg-accent text-white text-xs font-bold rounded-full flex items-center justify-center">
+                  <div className="absolute -top-1 -right-1 w-6 h-6 bg-accent text-white text-xs font-bold rounded-full flex items-center justify-center shadow-sm">
                     {step.step}
                   </div>
                 </div>
