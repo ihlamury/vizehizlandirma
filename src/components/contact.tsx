@@ -103,7 +103,7 @@ export function Contact() {
                 {/* Response Time */}
                 <div className="bg-white/10 rounded-lg p-4 mt-8">
                   <p className="text-sm text-white/90">
-                    <strong>Yanıt Süresi:</strong> Genellikle 24 saat içinde tüm mesajlara dönüş yapıyoruz.
+                    <strong>Yanıt Süresi:</strong> 24 saat içinde tüm mesajlara dönüş yapıyoruz.
                   </p>
                 </div>
               </div>
