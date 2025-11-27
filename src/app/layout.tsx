@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
-import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -68,14 +68,6 @@ export const metadata: Metadata = {
     },
   },
 
-  // Verification (add your codes after setting up)
-  verification: {
-    google: "PNYrVaqaurv_UqSPDH4gOEKvxdBKt5eeQHGZ3IrVIa4",
-    // other: {
-    //   "facebook-domain-verification": "YOUR_FACEBOOK_VERIFICATION_CODE",
-    // },
-  },
-
   // Canonical URL
   alternates: {
     canonical: "https://vizehizlandirma.com",
@@ -105,11 +97,18 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
-        {/* Google Ads Conversion Tracking - Replace with your ID */}
-        {/* <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17763826678"></script> */}
-        
-        {/* Meta Pixel - Replace with your ID */}
-        {/* Will be added after you create Meta Pixel */}
+        {/* Google Ads Tag */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17763826678"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-17763826678');
+            `,
+          }}
+        />
       </head>
       <body className={inter.className}>
         {children}
