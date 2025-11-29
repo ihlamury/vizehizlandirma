@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Shield, Clock, FileCheck, ArrowRight } from "lucide-react";
+import { Shield, Clock, FileCheck, ArrowRight, Zap } from "lucide-react";
 
 export function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -70,10 +70,10 @@ export function Hero() {
             </div>
             <div className="text-center">
               <div className="flex justify-center mb-2">
-                <FileCheck className="w-6 h-6 text-amber-300" />
+                <Zap className="w-6 h-6 text-amber-300" />
               </div>
-              <p className="text-2xl font-bold">500+</p>
-              <p className="text-sm text-white/80">Mutlu Müşteri</p>
+              <p className="text-2xl font-bold">0-30 Gün</p>
+              <p className="text-sm text-white/80">Hızlı Sonuç</p>
             </div>
             <div className="text-center">
               <div className="flex justify-center mb-2">
