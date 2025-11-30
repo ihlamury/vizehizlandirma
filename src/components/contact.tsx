@@ -145,6 +145,9 @@ export function Contact() {
                   <p className="text-muted-foreground text-sm">
                     En kısa sürede size dönüş yapacağız.
                   </p>
+                  <p className="text-sm text-gray-500">
+                    Yanıtımız gelen kutunuzda görünmezse lütfen spam/istenmeyen klasörünüzü kontrol edin.
+                  </p>
                   <Button
                     onClick={() => setSubmitStatus("idle")}
                     variant="outline"
