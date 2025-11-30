@@ -34,6 +34,28 @@ export function Hero() {
             <span className="text-amber-300">Hızlandırıyoruz</span>
           </h1>
 
+          {/* Service Tags */}
+          <div className="flex flex-wrap justify-center gap-2 mb-6">
+          <button
+              onClick={() => scrollToSection("hizmetler")}
+              className="bg-white/20 hover:bg-white/30 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors cursor-pointer"
+          >
+            DS-160 Form Doldurma
+          </button>
+          <button
+              onClick={() => scrollToSection("hizmetler")}
+              className="bg-white/20 hover:bg-white/30 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors cursor-pointer"
+          >
+              Hesap Oluşturma
+          </button>
+          <button
+              onClick={() => scrollToSection("hizmetler")}
+              className="bg-amber-400 hover:bg-amber-500 text-primary px-3 py-1 rounded-full text-sm font-medium transition-colors cursor-pointer"
+          >
+              🚀 Randevu Hızlandırma
+          </button>
+          </div>
+          
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto">
             DS-160 form doldurma, hesap oluşturma ve randevu öne çekme
