@@ -13,7 +13,7 @@ const faqs = [
   {
     question: "Randevu ne kadar sürede bulunur?",
     answer:
-      "Randevu bulma süresi konsolosluk yoğunluğuna göre değişir. Genellikle 1 kişi için 0-10 gün, 2 kişi için 0-2 hafta, 3 kişi için 0-3 hafta, 4 kişi için 0-1 ay içinde erken randevu buluyoruz. Sistemimiz 7/24 otomatik olarak uygun tarihleri tarar.",
+      "Randevu bulma süresi konsolosluk yoğunluğuna göre değişir. Genellikle 1 kişi için 0-10 gün, 2 kişi için 0-2 hafta, 3 kişi için 0-3 hafta, 4 kişi için 0-1 ay içinde erken randevu buluyoruz.",
   },
   {
     question: "Hangi belgeler gerekli?",

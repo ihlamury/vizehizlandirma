@@ -118,11 +118,11 @@ export function Contact() {
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-amber-300" />
-                    <span>7/24 otomatik randevu tarama</span>
+                    <span>Sürekli randevu takibi</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-amber-300" />
-                    <span>500+ mutlu müşteri</span>
+                    <span>7/24 hizmet</span>
                   </li>
                 </ul>
               </div>

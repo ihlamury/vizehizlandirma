@@ -55,7 +55,7 @@ export function Hero() {
               🚀 Randevu Hızlandırma
           </button>
           </div>
-          
+
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto">
             DS-160 form doldurma, hesap oluşturma ve randevu öne çekme
@@ -88,7 +88,7 @@ export function Hero() {
                 <Clock className="w-6 h-6 text-amber-300" />
               </div>
               <p className="text-2xl font-bold">7/24</p>
-              <p className="text-sm text-white/80">Otomatik Takip</p>
+              <p className="text-sm text-white/80">Hizmet</p>
             </div>
             <div className="text-center">
               <div className="flex justify-center mb-2">

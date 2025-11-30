@@ -45,7 +45,7 @@ const services: Service[] = [
     title: "Randevu Hızlandırma",
     price: 4000,
     features: [
-      "7/24 otomatik tarama",
+      "7/24 hızlı sonuç",
       "Anında bildirim",
       "Otomatik değişiklik",
     ],
